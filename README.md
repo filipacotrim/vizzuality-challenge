@@ -25,4 +25,7 @@ pnpm dev
 bun dev
 ```
 
+4. Visit [website](http://localhost:3000)!
+
+
 Solution done by **Filipa Cotrim** :)
