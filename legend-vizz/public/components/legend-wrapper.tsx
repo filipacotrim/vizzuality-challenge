@@ -12,6 +12,8 @@ type LegendWrapperProps = {
 
 export function LegendWrapper({ items }: LegendWrapperProps) {
   const [expanded, setExpanded] = useState<number[]>([]);
+  const [visibility, setVisibility] = useState<number[]>([]);
+  const [info, setInfo] = useState<number[]>([]);
 
   function onChangeCollapse(idx: number) {
     setExpanded(prev =>
@@ -21,6 +23,23 @@ export function LegendWrapper({ items }: LegendWrapperProps) {
     );
   }
 
+  function onChangeVisibility(idx: number) {
+    setVisibility(prev =>
+      prev.includes(idx)
+        ? prev.filter(i => i !== idx) 
+        : [...prev, idx] 
+    );
+  }
+
+  function onChangeInfo(idx: number) {
+    setInfo(prev =>
+      prev.includes(idx)
+        ? prev.filter(i => i !== idx) 
+        : [...prev, idx] 
+    );
+  }
+
+
   return (
     <div style={{ border: '2px solid #ccc', borderRadius: '17px', width: '35rem', backgroundColor: '#ffffff', padding: '1rem' }}>
       {items.map((item, idx) => (
@@ -29,7 +48,7 @@ export function LegendWrapper({ items }: LegendWrapperProps) {
           style={{
             borderBottom: '1px solid #eee',
             height: expanded.includes(idx) ? 'auto' : 'fit-content',
-            overflow: 'hidden',
+            overflow: 'visible',
             position: 'relative',
             transition: 'height 0.3s',
             display: 'flex',
@@ -38,7 +57,7 @@ export function LegendWrapper({ items }: LegendWrapperProps) {
             flexDirection: 'column',
           }}
         >
-          <Header name={item.name} expanded={expanded.includes(idx)} onChangeCollapse={onChangeCollapse} id={idx} />
+          <Header name={item.name} expanded={expanded.includes(idx)} onChangeCollapse={onChangeCollapse} id={idx} visible={visibility.includes(idx)} onChangeVisibility={onChangeVisibility} info={info.includes(idx)} onChangeInfo={onChangeInfo} />
           {
             item.type === 'basic' && expanded.includes(idx) && (
               <Basic item={item} />

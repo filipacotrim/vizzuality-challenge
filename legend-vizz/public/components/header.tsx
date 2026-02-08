@@ -1,19 +1,27 @@
+
+import { Tooltip } from './tooltip';
+
 type HeaderProps = {
     name: string,
     expanded: boolean,
     onChangeCollapse: (idx: number) => void,
+    visible: boolean,
+    onChangeVisibility: (idx: number) => void,
+    info: boolean,
+    onChangeInfo: (idx: number) => void,
     id: number,
 };
 
-export function Header({ name, expanded, onChangeCollapse, id }: HeaderProps) {
+export function Header({ name, expanded, onChangeCollapse, id, visible, onChangeVisibility, info, onChangeInfo }: HeaderProps) {
     return (
     <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <div style={{ flex: 1,fontFamily: 'Lato', fontWeight: '700', fontSize: '16px'}}>
               <span>{name}</span>
             </div>
             <div style={{ display: "flex", flexDirection: "row", gap: '0.5rem', alignItems: 'center' }}>
+            <Tooltip content={visible ? "Hide layer" : "Show layer"}>
             <img
-              src="/assets/hide.svg"
+              src={visible ? "/assets/hide.svg" : "/assets/show.svg"}
               alt="Expand"
               style={{
                 position: 'relative',
@@ -24,8 +32,10 @@ export function Header({ name, expanded, onChangeCollapse, id }: HeaderProps) {
                 transform:  'none',
                 transition: 'transform 0.3s',
               }}
-              onClick={() => console.log('Info clicked')}
+              onClick={() => onChangeVisibility(id)}
             />
+            </Tooltip>
+            <Tooltip content={ info ? "Hide info" : "Show info"}>
             <img
               src="/assets/info.svg"
               alt="Expand"
@@ -38,8 +48,10 @@ export function Header({ name, expanded, onChangeCollapse, id }: HeaderProps) {
                 transform:  'none',
                 transition: 'transform 0.3s',
               }}
-              onClick={() => console.log('Info clicked')}
+              onClick={() => onChangeInfo(id)}
             />
+            </Tooltip>
+            <Tooltip content={expanded ? "Collapse" : "Expand"}>
             <img
               src="/assets/arrow-down.svg"
               alt="Expand"
@@ -54,6 +66,7 @@ export function Header({ name, expanded, onChangeCollapse, id }: HeaderProps) {
               }}
               onClick={() => onChangeCollapse(id)}
             />
+            </Tooltip>
             </div>
           </div>
     );
