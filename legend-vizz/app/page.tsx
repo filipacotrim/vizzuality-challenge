@@ -1,3 +1,5 @@
+'use server';
+
 import { LegendWrapper } from '../public/components/legend-wrapper';
 
 export default async function Home() {

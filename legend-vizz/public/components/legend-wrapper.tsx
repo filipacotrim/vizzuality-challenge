@@ -2,13 +2,24 @@
 import { useState } from 'react';
 import "@fontsource/lato"; 
 import { Basic } from './basic';
+import { Header } from './header';
+import { Gradient } from './gradient';
+import { Choropleth } from './choropleth';
 
 type LegendWrapperProps = {
   items: any[],
 };
 
 export function LegendWrapper({ items }: LegendWrapperProps) {
-  const [expanded, setExpanded] = useState<number | null>(null);
+  const [expanded, setExpanded] = useState<number[]>([]);
+
+  function onChangeCollapse(idx: number) {
+    setExpanded(prev =>
+      prev.includes(idx)
+        ? prev.filter(i => i !== idx) 
+        : [...prev, idx]
+    );
+  }
 
   return (
     <div style={{ border: '2px solid #ccc', borderRadius: '17px', width: '35rem', backgroundColor: '#ffffff', padding: '1rem' }}>
@@ -17,7 +28,7 @@ export function LegendWrapper({ items }: LegendWrapperProps) {
           key={item.id}
           style={{
             borderBottom: '1px solid #eee',
-            height: expanded === idx ? 'auto' : 'fit-content',
+            height: expanded.includes(idx) ? 'auto' : 'fit-content',
             overflow: 'hidden',
             position: 'relative',
             transition: 'height 0.3s',
@@ -27,31 +38,17 @@ export function LegendWrapper({ items }: LegendWrapperProps) {
             flexDirection: 'column',
           }}
         >
-          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}>
-            <div style={{ flex: 1,fontFamily: 'Lato', fontWeight: '700', fontSize: '16px'}}>
-              <span>{item.name}</span>
-            </div>
-            <img
-              src="/assets/arrow-down.svg"
-              alt="Expand"
-              style={{
-                position: 'relative',
-                flex: '0 0 auto',
-                cursor: 'pointer',
-                width: '1rem',
-                height: '1rem',
-                transform: expanded === idx ? 'rotate(180deg)' : 'none',
-                transition: 'transform 0.3s',
-              }}
-              onClick={() => setExpanded(expanded === idx ? null : idx)}
-            />
-          </div>
+          <Header name={item.name} expanded={expanded.includes(idx)} onChangeCollapse={onChangeCollapse} id={idx} />
           {
-            // switch cases for different types of legends
-            item.type === 'basic' && (
+            item.type === 'basic' && expanded.includes(idx) && (
               <Basic item={item} />
-            )
-          }
+          )}
+          {item.type === 'gradient' && expanded.includes(idx) && (
+              <Gradient item={item} />
+          )}
+          {item.type === 'choropleth' && expanded.includes(idx) && (
+              <Choropleth item={item} />
+          )}
         </div>
       ))}
     </div>
