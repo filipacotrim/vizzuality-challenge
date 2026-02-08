@@ -52,14 +52,12 @@ export function LegendWrapper({ items }: LegendWrapperProps) {
             position: 'relative',
             transition: 'height 0.3s',
             display: 'flex',
-            alignItems: 'center',
             marginBottom: '1rem',
             flexDirection: 'column',
           }}
         >
-          <Header name={item.name} expanded={expanded.includes(idx)} onChangeCollapse={onChangeCollapse} id={idx} visible={visibility.includes(idx)} onChangeVisibility={onChangeVisibility} info={info.includes(idx)} onChangeInfo={onChangeInfo} />
-          {
-            item.type === 'basic' && expanded.includes(idx) && (
+          <Header name={item.name} expanded={expanded.includes(idx)} onChangeCollapse={onChangeCollapse} id={idx} visible={visibility.includes(idx)} onChangeVisibility={onChangeVisibility} info={info.includes(idx)} onChangeInfo={onChangeInfo} description={item.description} />
+          {item.type === 'basic' && expanded.includes(idx) && (
               <Basic item={item} />
           )}
           {item.type === 'gradient' && expanded.includes(idx) && (

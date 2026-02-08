@@ -1,4 +1,5 @@
 
+import { InfoModal } from './info-modal';
 import { Tooltip } from './tooltip';
 
 type HeaderProps = {
@@ -10,9 +11,10 @@ type HeaderProps = {
     info: boolean,
     onChangeInfo: (idx: number) => void,
     id: number,
+    description?: string,
 };
 
-export function Header({ name, expanded, onChangeCollapse, id, visible, onChangeVisibility, info, onChangeInfo }: HeaderProps) {
+export function Header({ name, expanded, onChangeCollapse, id, visible, onChangeVisibility, info, onChangeInfo, description }: HeaderProps) {
     return (
     <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <img
@@ -50,22 +52,38 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
               onClick={() => onChangeVisibility(id)}
             />
             </Tooltip>
-            <Tooltip content={ info ? "Hide info" : "Show info"}>
-            <img
-              src="/assets/info.svg"
-              alt="Expand"
-              style={{
-                position: 'relative',
-                flex: '0 0 auto',
-                cursor: 'pointer',
-                width: '1rem',
-                height: '1rem',
-                transform:  'none',
-                transition: 'transform 0.3s',
-              }}
-              onClick={() => onChangeInfo(id)}
-            />
-            </Tooltip>
+            <div style={{ position: "relative", display: "inline-block" }}>
+              <Tooltip content={info ? "Hide info" : "Show info"}>
+                <img
+                  src="/assets/info.svg"
+                  alt="Expand"
+                  style={{
+                    position: 'relative',
+                    flex: '0 0 auto',
+                    cursor: 'pointer',
+                    width: '1rem',
+                    height: '1rem',
+                    transform:  'none',
+                    transition: 'transform 0.3s',
+                  }}
+                  onClick={() => onChangeInfo(id)}
+                />
+              </Tooltip>
+              {info && (
+                <div style={{
+                  position: "absolute",
+                  left: "120%",
+                  top: "50%",
+                  borderRadius: '17px',
+                  height: "10rem",
+                  width: "15rem",
+                  overflow: "auto",
+                  zIndex: 2000,
+                }}>
+                  <InfoModal description={description!} />
+                </div>
+              )}
+          </div>
             <Tooltip content={expanded ? "Collapse" : "Expand"}>
             <img
               src="/assets/arrow-down.svg"

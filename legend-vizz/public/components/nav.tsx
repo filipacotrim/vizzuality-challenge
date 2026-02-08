@@ -8,7 +8,7 @@ export function Nav() {
         color: '#2ba4a0',
         padding: '0.5rem 2rem',
         width: '100%',
-        position: 'sticky',
+        position: 'fixed',
         top: 0,
         left: 0,
         zIndex: 100,
