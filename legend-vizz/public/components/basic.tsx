@@ -1,8 +1,9 @@
 
-export function Basic() {
-  return (
-      <div>
-        <h1> Basic Component!</h1>
-      </div>
-  );
+export function Basic({ item }: { item: any }) {
+    return (
+        <div style={{ padding: '1rem', fontSize: '14px', color: '#555' }}>
+            <p>{item.description}</p>
+           
+        </div>
+    );
 }

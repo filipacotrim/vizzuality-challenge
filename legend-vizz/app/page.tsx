@@ -1,9 +1,20 @@
-import { Basic } from '../public/components/basic';
-export default function Home() {
+import { LegendWrapper } from '../public/components/legend-wrapper';
+
+export default async function Home() {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/data`, { cache: 'no-store' });
+  const data = await response.json();
+
   return (
-      <div>
-        <h1> Setting up!</h1>
-        <Basic />
-      </div>
+    <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'flex-start',
+      minHeight: '100vh',
+      margin: '2rem auto',
+    }}
+  >
+    <LegendWrapper items={data} />
+  </div>
   );
 }
