@@ -52,6 +52,7 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
           transform:  'none',
           transition: 'transform 0.3s',
         }}
+        {...dragHandleProps}
       />
       <div style={{ flex: 1, minWidth: 0, fontFamily: 'Lato', fontWeight: '700', fontSize: 'clamp(13px, 2.2vw, 16px)', lineHeight: 1.2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flexWrap: 'wrap' }}>
         <span>{name}</span>
@@ -91,16 +92,8 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
           />
         </Tooltip>
         {info && (
-          <div ref={infoRef} style={{
-            position: "absolute",
-            left: "120%",
-            top: "50%",
-            borderRadius: '17px',
-            height: "10rem",
-            width: "15rem",
-            overflow: "auto",
-            zIndex: 2000,
-          }}>
+          <div ref={infoRef}
+          className="info-modal-wrapper">
             <InfoModal description={description!} />
           </div>
         )}

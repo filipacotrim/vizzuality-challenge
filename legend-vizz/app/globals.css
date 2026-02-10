@@ -17,3 +17,30 @@ body::before {
 
   background: linear-gradient(140deg, #04CCC5 0%, #FFE334 100%);
 }
+
+.info-modal-wrapper {
+  position: absolute;
+  left: 120%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2000;
+  width: 15rem;
+  max-height: 10rem;
+  overflow: auto;
+  border-radius: 17px;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .info-modal-wrapper {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transform: translateX(-100%);
+    z-index: 2000;
+    width: 15rem;
+    max-height: 10rem;
+    overflow: auto;
+    border-radius: 17px;
+  }
+}
