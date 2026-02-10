@@ -6,15 +6,10 @@ import { Gradient } from './gradient';
 import { Choropleth } from './choropleth';
 import { Timeline } from './timeline';
 import { useSortable } from '@dnd-kit/sortable';
+import { LegendItem } from './utils';
 
 type SortableLegendItemProps = {
-  item: {
-    id: string;
-    name: string;
-    type: 'basic' | 'gradient' | 'choropleth';
-    description?: string;
-    timeline?: any;
-  };
+  item: LegendItem;
   expanded: boolean;
   visibility: boolean;
   info: boolean;

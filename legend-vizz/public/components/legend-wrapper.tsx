@@ -2,17 +2,10 @@
 import { useState } from 'react';
 import "@fontsource/lato"; 
 import { SortableLegendItem } from './sortable-item';
+import { LegendItem } from './utils';
 
 import { DndContext, closestCenter, DragEndEvent, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
-import { arrayMove, SortableContext, verticalListSortingStrategy, useSortable } from '@dnd-kit/sortable';
-
-type LegendItem = {
-  id: string;
-  name: string;
-  type: 'basic' | 'gradient' | 'choropleth';
-  description?: string;
-  timeline?: any;
-};
+import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 
 type LegendWrapperProps = {
   items: LegendItem[],
@@ -71,7 +64,7 @@ export function LegendWrapper({ items }: LegendWrapperProps) {
   return (
     <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <SortableContext items={draggedItems.map(i => i.id)} strategy={verticalListSortingStrategy}>
-        <div style={{ border: '2px solid #ccc', borderRadius: '17px', width: '35rem', backgroundColor: '#ffffff', padding: '1rem' }}>
+        <div style={{ border: '2px solid #ccc', borderRadius: '17px', maxWidth: '35rem', backgroundColor: '#ffffff', padding: '1rem' }}>
           {draggedItems.map((item, idx) => (
             <SortableLegendItem
               key={item.id}

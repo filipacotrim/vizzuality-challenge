@@ -1,13 +1,11 @@
-'use server';
-
 import { LegendWrapper } from '../public/components/legend-wrapper';
+import { LegendItem } from '../public/components/utils';
 
 export default async function Home() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/data`, { cache: 'no-store' });
-  const data = await response.json();
+  const data = await response.json() as LegendItem[];
 
   // Purify description content to prevent XSS attacks ???
-
 
   return (
     <div
@@ -15,7 +13,6 @@ export default async function Home() {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'flex-start',
-      minHeight: '100vh',
       margin: '2rem auto',
     }}
   >

@@ -2,7 +2,7 @@
 'use client';
 import { InfoModal } from './info-modal';
 import { Tooltip } from './tooltip';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 
 type HeaderProps = {
@@ -15,7 +15,7 @@ type HeaderProps = {
     onChangeInfo: (id: string) => void;
     id: string; 
     description?: string;
-    dragHandleProps: any; // To-do: type this properly
+    dragHandleProps: any;
 };
 
 export function Header({ name, expanded, onChangeCollapse, id, visible, onChangeVisibility, info, onChangeInfo, description, dragHandleProps }: HeaderProps) {
@@ -38,7 +38,7 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
     }, [info, id, onChangeInfo]);
 
     return (
-    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%', justifyContent: 'space-between', marginBottom: '0.5rem', gap: '0.5rem' }}>
       <img
         src="/assets/drag-dots.svg"
         alt="Expand"
@@ -52,9 +52,8 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
           transform:  'none',
           transition: 'transform 0.3s',
         }}
-        {...dragHandleProps}
       />
-      <div style={{ flex: 1,fontFamily: 'Lato', fontWeight: '700', fontSize: '16px'}}>
+      <div style={{ flex: 1, minWidth: 0, fontFamily: 'Lato', fontWeight: '700', fontSize: 'clamp(13px, 2.2vw, 16px)', lineHeight: 1.2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flexWrap: 'wrap' }}>
         <span>{name}</span>
       </div>
       <div style={{ display: "flex", flexDirection: "row", gap: '0.5rem', alignItems: 'center' }}>
@@ -116,8 +115,8 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
           cursor: 'pointer',
           width: '1rem',
           height: '1rem',
-          transform: expanded ? 'none' : 'rotate(180deg)',
           transition: 'transform 0.3s',
+          transform: expanded ? 'none' : 'rotate(180deg)',
         }}
         onClick={() => {
           onChangeCollapse(id);
