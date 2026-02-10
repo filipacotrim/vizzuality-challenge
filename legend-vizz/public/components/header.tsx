@@ -1,6 +1,9 @@
 
+'use client';
 import { InfoModal } from './info-modal';
 import { Tooltip } from './tooltip';
+import { useEffect, useRef } from 'react';
+
 
 type HeaderProps = {
     name: string;
@@ -16,6 +19,24 @@ type HeaderProps = {
 };
 
 export function Header({ name, expanded, onChangeCollapse, id, visible, onChangeVisibility, info, onChangeInfo, description, dragHandleProps }: HeaderProps) {
+    const infoRef = useRef<HTMLDivElement | null>(null); // to-do: i dont know if i like this
+
+    useEffect(() => {
+      if (!info) return;
+
+      const handleClickOutside = (event: MouseEvent) => { // to-do: i dont know if i like this
+        if (infoRef.current && !infoRef.current.contains(event.target as Node)) {
+          onChangeInfo(id);
+        }
+      };
+
+      document.addEventListener('mousedown', handleClickOutside);
+
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [info, id, onChangeInfo]);
+
     return (
     <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
       <img
@@ -71,7 +92,7 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
           />
         </Tooltip>
         {info && (
-          <div style={{
+          <div ref={infoRef} style={{
             position: "absolute",
             left: "120%",
             top: "50%",

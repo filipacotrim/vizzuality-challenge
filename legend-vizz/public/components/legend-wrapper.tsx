@@ -5,7 +5,6 @@ import { SortableLegendItem } from './sortable-item';
 
 import { DndContext, closestCenter, DragEndEvent, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { arrayMove, SortableContext, verticalListSortingStrategy, useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
 
 type LegendItem = {
   id: string;
@@ -50,7 +49,7 @@ export function LegendWrapper({ items }: LegendWrapperProps) {
     setInfo(prev =>
       prev.includes(id)
         ? prev.filter(i => i !== id)
-        : [...prev, id]
+        : [id] // also closes others when opening a new one
     );
   }
 
