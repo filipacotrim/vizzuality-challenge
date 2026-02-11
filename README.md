@@ -10,7 +10,7 @@ git clone git@github.com:filipacotrim/vizzuality-challenge.git
 2. Move to the main directory:
 
 ```bash
-cd legen-vizz
+cd legend-vizz
 ```
 
 3. Run the development server:
