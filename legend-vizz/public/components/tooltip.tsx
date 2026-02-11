@@ -1,3 +1,5 @@
+'use client';
+import { useEffect } from 'react';
 import { ReactNode, useState } from "react";
 
 type TooltipProps = {
@@ -30,6 +32,7 @@ export function Tooltip({ content, children }: TooltipProps) {
             whiteSpace: "nowrap",
             zIndex: 1000,
             pointerEvents: "none",
+            touchAction: 'none',
           }}
         >
           {content}
@@ -44,6 +47,7 @@ export function Tooltip({ content, children }: TooltipProps) {
               borderLeft: "6px solid transparent",
               borderRight: "6px solid transparent",
               borderTop: "6px solid #ffffffff",
+              touchAction: 'none',
             }}
           />
         </span>

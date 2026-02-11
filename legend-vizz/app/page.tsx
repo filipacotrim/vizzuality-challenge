@@ -9,13 +9,13 @@ export default async function Home() {
 
   return (
     <div
-    style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'flex-start',
-      margin: '2rem auto',
-    }}
-  >
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        margin: '2rem auto'
+      }}
+    >
     <LegendWrapper items={data} />
   </div>
   );

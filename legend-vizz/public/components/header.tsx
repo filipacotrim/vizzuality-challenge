@@ -30,10 +30,10 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
         }
       };
 
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('mouseup', handleClickOutside);
 
       return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener('mouseup', handleClickOutside);
       };
     }, [info, id, onChangeInfo]);
 
@@ -51,6 +51,7 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
           marginRight: '0.5rem',
           transform:  'none',
           transition: 'transform 0.3s',
+          touchAction: 'none',
         }}
         {...dragHandleProps}
       />

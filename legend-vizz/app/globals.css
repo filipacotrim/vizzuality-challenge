@@ -1,5 +1,6 @@
 html, body {
   height: 100%;
+  
 }
 
 body {
@@ -14,7 +15,7 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: -1;
-
+  overflow-y: scroll;
   background: linear-gradient(140deg, #04CCC5 0%, #FFE334 100%);
 }
 

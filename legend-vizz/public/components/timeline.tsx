@@ -25,7 +25,7 @@ export function Timeline({ start, end, step, startValue, endValue, onChangeDate 
   const valueToPercent = (value: number) => ((value - min) / (max - min)) * 100;
   const percentToValue = (percent: number) => Math.round((percent / 100) * (max - min) / step) * step + min;
 
-  const handleDrag = (handle: 'start' | 'end', e: React.MouseEvent) => {
+  const handleDrag = (handle: 'start' | 'end', e: React.PointerEvent) => {
     if (!trackRef.current) return;
     const rect = trackRef.current.getBoundingClientRect();
     const percent = ((e.clientX - rect.left) / rect.width) * 100;
@@ -53,15 +53,15 @@ export function Timeline({ start, end, step, startValue, endValue, onChangeDate 
         />
         {/* start handle */}
         <div
-          onMouseDown={e => {
+          onPointerDown={e => {
             e.preventDefault();
-            const move = (event: MouseEvent) => handleDrag('start', event as any);
+            const move = (event: PointerEvent) => handleDrag('start', event as any);
             const up = () => {
-              window.removeEventListener('mousemove', move);
-              window.removeEventListener('mouseup', up);
+              window.removeEventListener('pointermove', move);
+              window.removeEventListener('pointerup', up);
             };
-            window.addEventListener('mousemove', move);
-            window.addEventListener('mouseup', up);
+            window.addEventListener('pointermove', move);
+            window.addEventListener('pointerup', up);
           }}
           style={{
             position: 'absolute',
@@ -74,20 +74,21 @@ export function Timeline({ start, end, step, startValue, endValue, onChangeDate 
             backgroundColor: '#CAB2D6',
             cursor: 'pointer',
             zIndex: 2,
+            touchAction: 'none',
           }}
         />
 
         {/* end handle */}
         <div
-          onMouseDown={e => {
+          onPointerDown={e => {
             e.preventDefault();
-            const move = (event: MouseEvent) => handleDrag('end', event as any);
+            const move = (event: PointerEvent) => handleDrag('end', event as any);
             const up = () => {
-              window.removeEventListener('mousemove', move);
-              window.removeEventListener('mouseup', up);
+              window.removeEventListener('pointermove', move);
+              window.removeEventListener('pointerup', up);
             };
-            window.addEventListener('mousemove', move);
-            window.addEventListener('mouseup', up);
+            window.addEventListener('pointermove', move);
+            window.addEventListener('pointerup', up);
           }}
           style={{
             position: 'absolute',
@@ -100,6 +101,7 @@ export function Timeline({ start, end, step, startValue, endValue, onChangeDate 
             backgroundColor: '#CAB2D6',
             cursor: 'pointer',
             zIndex: 2,
+            touchAction: 'none',
           }}
         />
       </div>
