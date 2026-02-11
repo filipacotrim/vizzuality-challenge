@@ -20,12 +20,20 @@ type HeaderProps = {
 
 export function Header({ name, expanded, onChangeCollapse, id, visible, onChangeVisibility, info, onChangeInfo, description, dragHandleProps }: HeaderProps) {
     const infoRef = useRef<HTMLDivElement | null>(null); // to-do: i dont know if i like this
+    const infoButtonRef = useRef<HTMLImageElement | null>(null);
 
     useEffect(() => {
       if (!info) return;
 
       const handleClickOutside = (event: MouseEvent) => { // to-do: i dont know if i like this
-        if (infoRef.current && !infoRef.current.contains(event.target as Node)) {
+        const target = event.target as Node;
+        
+        if (
+          infoRef.current &&
+          !infoRef.current.contains(target) &&
+          infoButtonRef.current &&
+          !infoButtonRef.current.contains(target)
+        ) {
           onChangeInfo(id);
         }
       };
@@ -90,6 +98,7 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
               transition: 'transform 0.3s',
             }}
             onClick={() => onChangeInfo(id)}
+            ref={infoButtonRef}
           />
         </Tooltip>
         {info && (

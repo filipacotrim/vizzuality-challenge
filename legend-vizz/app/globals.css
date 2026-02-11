@@ -22,11 +22,10 @@ body::before {
 .info-modal-wrapper {
   position: absolute;
   left: 120%;
-  top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-10%);
   z-index: 2000;
   width: 15rem;
-  max-height: 10rem;
+  max-height: 15rem;
   overflow: auto;
   border-radius: 17px;
 }
