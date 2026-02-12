@@ -45,6 +45,12 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
       };
     }, [info, id, onChangeInfo]);
 
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+      setMounted(true);
+    }, []);
+
     return (
     <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%', justifyContent: 'space-between', marginBottom: '0.5rem', gap: '0.5rem' }}>
       <img
@@ -61,7 +67,7 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
           transition: 'transform 0.3s',
           touchAction: 'none',
         }}
-        {...dragHandleProps}
+        {...(mounted ? dragHandleProps : {})}
       />
       <div style={{ flex: 1, minWidth: 0, fontFamily: 'Lato', fontWeight: '700', fontSize: 'clamp(13px, 2.2vw, 16px)', lineHeight: 1.2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flexWrap: 'wrap' }}>
         <span>{name}</span>

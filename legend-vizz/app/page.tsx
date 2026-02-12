@@ -16,7 +16,7 @@ export default async function Home() {
         margin: '2rem auto'
       }}
     >
-    <LegendWrapper items={data} />
+    <LegendWrapper initialItems={data} />
   </div>
   );
 }

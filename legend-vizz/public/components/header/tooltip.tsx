@@ -9,12 +9,21 @@ type TooltipProps = {
 
 export function Tooltip({ content, children }: TooltipProps) {
   const [show, setShow] = useState(false);
-
+  const [touchDevice, setTouchDevice] = useState(false);
+  
+  useEffect(() => {
+    const handleTouchStart = () => setTouchDevice(true);
+    window.addEventListener("touchstart", handleTouchStart);
+    return () => {
+      window.removeEventListener("touchstart", handleTouchStart);
+    };
+  }, []);
+  
   return (
     <span
       style={{ position: "relative", display: "inline-block" }}
-      onMouseEnter={() => setShow(true)}
-      onMouseLeave={() => setShow(false)}
+      onMouseEnter={() => !touchDevice && setShow(true)}
+      onMouseLeave={() => !touchDevice && setShow(false)}
     >
       {children}
       {show && (

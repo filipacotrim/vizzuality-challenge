@@ -1,26 +1,29 @@
 'use client';
+
 import { useState } from 'react';
-import "@fontsource/lato"; 
-import { SortableLegendItem } from './sortable-item';
+import { SortableWrapper } from './sortable-wrapper';
 import { LegendItem } from './utils';
 
-import { DndContext, closestCenter, DragEndEvent, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
-import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
-
-type LegendWrapperProps = {
-  items: LegendItem[],
+type Props = {
+  initialItems: LegendItem[];
 };
 
-export function LegendWrapper({ items }: LegendWrapperProps) {
+export function LegendWrapper({ initialItems }: Props) {
+  const [items, setItems] = useState(initialItems);
   const [expanded, setExpanded] = useState<string[]>([]);
   const [visibility, setVisibility] = useState<string[]>([]);
   const [info, setInfo] = useState<string[]>([]);
-  
+
   const [startValue, setStart] = useState<number>(0);
   const [endValue, setEnd] = useState<number>(0);
 
-  const [draggedItems, setDraggedItems] = useState(items);
-  const sensors = useSensors(useSensor(PointerSensor));
+  function onChangeOrder(newIds: string[]) {
+    const reordered = newIds.map(id =>
+      items.find(item => item.id === id)!
+    );
+
+    setItems(reordered);
+  }
 
   function onChangeCollapse(id: string) {
     setExpanded(prev =>
@@ -51,38 +54,20 @@ export function LegendWrapper({ items }: LegendWrapperProps) {
     setEnd(value_end);
   }
 
-  function handleDragEnd(event: DragEndEvent) {
-    const { active, over } = event;
-    if (over && active.id !== over.id) {
-      const oldIndex = draggedItems.findIndex(i => i.id === active.id);
-      const newIndex = draggedItems.findIndex(i => i.id === over.id);
-      setDraggedItems(arrayMove(draggedItems, oldIndex, newIndex));
-    }
-  }
-
 
   return (
-    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-      <SortableContext items={draggedItems.map(i => i.id)} strategy={verticalListSortingStrategy}>
-        <div style={{ border: '2px solid #ccc', borderRadius: '17px', width: "80%", maxWidth: '35rem', backgroundColor: '#ffffff', padding: '1rem' }}>
-          {draggedItems.map((item, idx) => (
-            <SortableLegendItem
-              key={item.id}
-              item={item}
-              expanded={expanded.includes(item.id)}
-              visibility={visibility.includes(item.id)}
-              info={info.includes(item.id)}
-              onChangeCollapse={onChangeCollapse}
-              onChangeVisibility={onChangeVisibility}
-              onChangeInfo={onChangeInfo}
-              startValue={startValue}
-              endValue={endValue}
-              onChangeDate={onChangeDate}
-            />
-          ))}
-
-        </div>
-       </SortableContext>
-    </DndContext>
+    <SortableWrapper
+        items={items}
+        onChangeOrder={onChangeOrder}
+        onChangeCollapse={onChangeCollapse}
+        onChangeVisibility={onChangeVisibility}
+        onChangeInfo={onChangeInfo}
+        onChangeDate={onChangeDate}
+        expanded={expanded}
+        visibility={visibility}
+        info={info}
+        startValue={startValue}
+        endValue={endValue}
+    />
   );
 }

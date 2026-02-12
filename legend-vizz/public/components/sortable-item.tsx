@@ -1,10 +1,10 @@
 import { normalizeToYear } from './utils';
 import { CSS } from '@dnd-kit/utilities';
-import { Basic } from './basic';
-import { Header } from './header';
-import { Gradient } from './gradient';
-import { Choropleth } from './choropleth';
-import { Timeline } from './timeline';
+import { Basic } from './layers/basic';
+import { Header } from './header/header';
+import { Gradient } from './layers/gradient';
+import { Choropleth } from './layers/choropleth';
+import { Timeline } from './layers/timeline';
 import { useSortable } from '@dnd-kit/sortable';
 import { LegendItem } from './utils';
 
@@ -46,6 +46,7 @@ export function SortableLegendItem({
         display: 'flex',
         flexDirection: 'column',
     };
+    
 
   return (
     <div ref={setNodeRef} style={headerStyle}>
