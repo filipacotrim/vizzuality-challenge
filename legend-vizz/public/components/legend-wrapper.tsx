@@ -1,22 +1,18 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { SortableWrapper } from './sortable-wrapper';
 import { LegendItem } from './utils';
 
+type Props = {
+  initialItems: LegendItem[];
+};
 
-export function LegendWrapper( ) {
-  const [items, setItems] = useState<LegendItem[]>([]);
+export function LegendWrapper({ initialItems }: Props) {
+  const [items, setItems] = useState(initialItems);
   const [expanded, setExpanded] = useState<string[]>([]);
   const [visibility, setVisibility] = useState<string[]>([]);
   const [info, setInfo] = useState<string[]>([]);
-
-  useEffect(() => {
-    fetch("/data.json")
-      .then((res) => res.json())
-      .then((data) => setItems(data))
-      .catch(console.error);
-  }, []);
 
   const [startValue, setStart] = useState<number>(0);
   const [endValue, setEnd] = useState<number>(0);
