@@ -49,6 +49,12 @@ Overall the architecture prioritizes:
 3. Server-side data fetching
 4. Client-isolated interactivity 
 
+Client-side components are organized inside the ```public/components``` directory and grouped by responsibility:
+- ```components/header/```: Contains the shared Header UI components used across different layer types.
+- ```components/layers/```: Contains layer-specific components, each encapsulating its own rendering logic.
+
+This structure keeps shared UI elements separate from feature-specific components, improving maintainability, scalability, and readability. It also ensures that reusable logic (like the Header) remains decoupled from layer implementations.
+
 ## Additional Notes
 
 The navigation bar features a logo derived from an exported SVG of the company’s publicly available logo ([source here ↗︎](https://brandfetch.com/vizzuality.com)). The background gradient was inspired by Vizzuality’s website and visual elements, with colors and styling adapted through careful inspection of their existing branding. Lastly, the favicon shown in the browser tab was designed by me in [Figma](https://www.figma.com/design/Fj78DJzOmOxZXdM6DaZcPe/Untitled?node-id=2-7&t=RPEIoBAiW9M9J7CE-1) to match the main logo and overall aesthetic.
