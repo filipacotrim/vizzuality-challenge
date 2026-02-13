@@ -4,7 +4,7 @@ import { LegendItem } from '../public/components/utils';
 export default async function Home() {
   const baseUrl =
     process.env.VERCEL_URL
-      ? `` // deployed
+      ? `https://vizzuality-challenge.vercel.app/` // deployed
       : 'http://localhost:3000';            // local dev
 
   const response = await fetch(`${baseUrl}/api/data`, { cache: 'no-store' });
