@@ -21,6 +21,7 @@ type HeaderProps = {
 export function Header({ name, expanded, onChangeCollapse, id, visible, onChangeVisibility, info, onChangeInfo, description, dragHandleProps }: HeaderProps) {
     const infoRef = useRef<HTMLDivElement | null>(null);
     const infoButtonRef = useRef<HTMLImageElement | null>(null);
+    const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
     useEffect(() => {
       if (!info) return;
@@ -54,7 +55,7 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
     return (
     <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%', justifyContent: 'space-between', marginBottom: '0.5rem', gap: '0.5rem' }}>
       <img
-        src="/assets/drag-dots.svg"
+        src={`${BASE_PATH}/assets/drag-dots.svg`}
         alt="Expand"
         style={{
           position: 'relative',
@@ -75,7 +76,7 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
       <div style={{ display: "flex", flexDirection: "row", gap: '0.5rem', alignItems: 'center' }}>
       <Tooltip content={visible ? "Hide layer" : "Show layer"}>
       <img
-        src={visible ? "/assets/hide.svg" : "/assets/show.svg"}
+        src={visible ? `${BASE_PATH}/assets/hide.svg` : `${BASE_PATH}/assets/show.svg`}
         alt="Expand"
         style={{
           position: 'relative',
@@ -92,7 +93,7 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
       <div style={{ position: "relative", display: "inline-block" }}>
         <Tooltip content={info ? "Hide info" : "Show info"}>
           <img
-            src="/assets/info.svg"
+            src={`${BASE_PATH}/assets/info.svg`}
             alt="Expand"
             style={{
               position: 'relative',
@@ -116,7 +117,7 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
     </div>
       <Tooltip content={expanded ? "Collapse" : "Expand"}>
       <img
-        src="/assets/arrow-down.svg"
+        src={`${BASE_PATH}/assets/arrow-down.svg`}
         alt="Expand"
         style={{
           position: 'relative',
