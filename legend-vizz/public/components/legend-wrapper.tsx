@@ -12,10 +12,9 @@ export function LegendWrapper( ) {
   const [info, setInfo] = useState<string[]>([]);
 
   useEffect(() => {
-    const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
-    fetch(`${BASE_PATH}/data.json`)
-      .then(res => res.json())
-      .then(setItems)
+    fetch("/data.json")
+      .then((res) => res.json())
+      .then((data) => setItems(data))
       .catch(console.error);
   }, []);
 
