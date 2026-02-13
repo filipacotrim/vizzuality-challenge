@@ -61,7 +61,6 @@ export function SortableLegendItem({
         onChangeInfo={onChangeInfo}
         description={item.description}
         dragHandleProps={{ ...attributes, ...listeners }} 
-
       />
       {item.type === 'basic' && expanded && <Basic item={item} />}
       {item.type === 'gradient' && expanded && <Gradient item={item} />}

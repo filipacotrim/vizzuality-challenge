@@ -10,7 +10,8 @@ type TooltipProps = {
 export function Tooltip({ content, children }: TooltipProps) {
   const [show, setShow] = useState(false);
   const [touchDevice, setTouchDevice] = useState(false);
-  
+
+  // Detect if it's a touch device to disable hover effects
   useEffect(() => {
     const handleTouchStart = () => setTouchDevice(true);
     window.addEventListener("touchstart", handleTouchStart);

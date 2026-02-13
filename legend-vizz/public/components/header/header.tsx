@@ -24,7 +24,7 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
 
     useEffect(() => {
       if (!info) return;
-
+      // info modal closes when clicking outside of it or the info button
       const handleClickOutside = (event: MouseEvent) => { 
         const target = event.target as Node;
         
@@ -67,7 +67,7 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
           transition: 'transform 0.3s',
           touchAction: 'none',
         }}
-        {...(mounted ? dragHandleProps : {})}
+        {...(mounted ? dragHandleProps : {})} // only spread drag handle props after component is mounted to avoid hydration issues
       />
       <div style={{ flex: 1, minWidth: 0, fontFamily: 'Lato', fontWeight: '700', fontSize: 'clamp(13px, 2.2vw, 16px)', lineHeight: 1.2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flexWrap: 'wrap' }}>
         <span>{name}</span>

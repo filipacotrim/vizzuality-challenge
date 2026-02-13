@@ -7,6 +7,7 @@ export type LegendItem = {
   items?: { name: string; color: string }[];
 };
 
+// date parser, wasnt sure how many formats expected -> normalizing to YYYY
 export function normalizeToYear(date: Date): string {
   return String(date.getFullYear());
 }
