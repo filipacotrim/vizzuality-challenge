@@ -2,7 +2,12 @@ import { LegendWrapper } from '../public/components/legend-wrapper';
 import { LegendItem } from '../public/components/utils';
 
 export default async function Home() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/data`, { cache: 'no-store' });
+  const baseUrl =
+    process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}` // deployed
+      : 'http://localhost:3000';            // local dev
+
+  const response = await fetch(`${baseUrl}/api/data`, { cache: 'no-store' });
   const data = await response.json() as LegendItem[];
 
   return (
