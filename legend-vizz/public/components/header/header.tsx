@@ -19,13 +19,13 @@ type HeaderProps = {
 };
 
 export function Header({ name, expanded, onChangeCollapse, id, visible, onChangeVisibility, info, onChangeInfo, description, dragHandleProps }: HeaderProps) {
-    const infoRef = useRef<HTMLDivElement | null>(null); // to-do: i dont know if i like this
+    const infoRef = useRef<HTMLDivElement | null>(null);
     const infoButtonRef = useRef<HTMLImageElement | null>(null);
 
     useEffect(() => {
       if (!info) return;
 
-      const handleClickOutside = (event: MouseEvent) => { // to-do: i dont know if i like this
+      const handleClickOutside = (event: MouseEvent) => { 
         const target = event.target as Node;
         
         if (

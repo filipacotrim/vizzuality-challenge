@@ -24,7 +24,7 @@ type LegendWrapperProps = {
 
 export function SortableWrapper({ items, onChangeOrder, onChangeCollapse, onChangeVisibility, onChangeInfo, onChangeDate, expanded, visibility, info, startValue, endValue }: LegendWrapperProps) {
   const sensors = useSensors(useSensor(PointerSensor));
-
+  
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
 

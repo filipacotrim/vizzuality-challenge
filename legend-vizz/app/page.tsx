@@ -5,8 +5,6 @@ export default async function Home() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/data`, { cache: 'no-store' });
   const data = await response.json() as LegendItem[];
 
-  // Purify description content to prevent XSS attacks ???
-
   return (
     <div
       style={{
