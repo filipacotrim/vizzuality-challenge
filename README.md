@@ -25,7 +25,7 @@ pnpm dev
 bun dev
 ```
 
-4. Visit [localhost](http://localhost:3000)!
+4. Visit [deployed app](https://vizzuality-challenge.vercel.app/)!
 
 ![Vizzuality Logo](legend-vizz/public/assets/rename.png)
 
@@ -55,11 +55,20 @@ Client-side components are organized inside the ```public/components``` director
 
 This structure keeps shared UI elements separate from feature-specific components, improving maintainability, scalability, and readability. It also ensures that reusable logic (like the Header) remains decoupled from layer implementations.
 
+## Deployment
+
+Although GitHub Pages is an easy option for deployment, it only supports static hosting. Since this project required dynamic data fetching, where the data is loaded at runtime rather than bundled at build time, GitHub Pages would not reliably handle server-side API requests. To maintain true interactivity and dynamic loading, the project was deployed to Vercel, which supports server-side rendering and API routes, allowing the app to fetch data dynamically both locally and in production.
+
 ## Additional Notes
 
 The navigation bar features a logo derived from an exported SVG of the company’s publicly available logo ([source here ↗︎](https://brandfetch.com/vizzuality.com)). The background gradient was inspired by Vizzuality’s website and visual elements, with colors and styling adapted through careful inspection of their existing branding. Lastly, the favicon shown in the browser tab was designed by me in [Figma](https://www.figma.com/design/Fj78DJzOmOxZXdM6DaZcPe/Untitled?node-id=2-7&t=RPEIoBAiW9M9J7CE-1) to match the main logo and overall aesthetic.
 
 The main challenges were implementing drag-and-drop without causing hydration mismatches in Next.js and ensuring full responsiveness. Drag listeners were applied only after the component mounted on the client to avoid server/client mismatches, while layout, text sizing, and modals were carefully adapted for different screen sizes and touch devices.
+
+Another challenge was deploying the project. GitHub Pages was difficult to configure due to Next.js’ static export behavior, base paths, and folder structure, which caused missing assets and 404 errors. Vercel worked better, but required careful setup and understanding that server-side fetching of local API routes cannot be done during static export — only client-side fetching or direct imports work reliably.
+
+<br>
+<br>
 
 Solution done by **Filipa Cotrim** for **Vizzuality** :)
 
