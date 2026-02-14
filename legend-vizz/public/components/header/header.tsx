@@ -63,6 +63,7 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
           height: '2.5rem',
           flex: '0 0 auto',
           touchAction: 'none',
+          overflow: 'hidden', // prevents stretching when dragging
         }}
       >
         <img
