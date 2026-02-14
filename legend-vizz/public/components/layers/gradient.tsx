@@ -4,7 +4,7 @@ export function Gradient({ item }: { item: LegendItem }) {
     const gradient = `linear-gradient( to right, ${item.items?.map((i: { name: string; color: string }) => i.color).join(',')})`;
 
     return (
-        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ width: '95%', display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 auto' }}>
             <div style={{height: '0.5rem', width: '100%', background: gradient}}/>
             <div style={{ display: 'flex', width: '100%' }}>
                 {item.items?.map((subItem: { name: string; color: string }, idx: number) => (

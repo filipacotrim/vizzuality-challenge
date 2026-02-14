@@ -39,7 +39,7 @@ export function Timeline({ start, end, step, startValue, endValue, onChangeDate 
   };
 
   return (
-    <div style={{ width: '100%', marginTop: '1rem', position: 'relative' }}>
+    <div style={{ width: '95%', marginTop: '1rem', margin: '1rem auto' }}>
       <div ref={trackRef} style={{position: 'relative', height: '3px', backgroundColor: '#ccc', borderRadius: '4px'}}>
         <div
           style={{

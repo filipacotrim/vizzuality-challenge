@@ -3,7 +3,7 @@ import { LegendItem } from '../utils';
 
 export function Basic({ item }: { item: LegendItem }) {
     return (
-        <div style={{marginBottom: "2rem"}}>
+        <div style={{marginBottom: "2rem", marginLeft: "1.5rem"}}>
             {item.items?.map((subItem: { name: string; color: string }, idx: number) => (
                 <div key={idx} style={{display: 'flex', flexDirection: 'row', marginBottom: "-1rem"}}>
                     <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: subItem.color, marginRight: '5px', alignSelf: 'center' }}></div>
