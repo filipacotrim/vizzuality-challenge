@@ -53,22 +53,28 @@ export function Header({ name, expanded, onChangeCollapse, id, visible, onChange
 
     return (
     <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%', justifyContent: 'space-between', marginBottom: '0.5rem', gap: '0.5rem' }}>
-      <img
-        src={"/assets/drag-dots.svg"}
-        alt="Expand"
+      <div
+        {...(mounted ? dragHandleProps : {})}
         style={{
-          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '2.5rem',
+          height: '2.5rem',
           flex: '0 0 auto',
-          cursor: 'pointer',
-          width: '1rem',
-          height: '1rem',
-          marginRight: '0.5rem',
-          transform:  'none',
-          transition: 'transform 0.3s',
           touchAction: 'none',
         }}
-        {...(mounted ? dragHandleProps : {})} // only spread drag handle props after component is mounted to avoid hydration issues
-      />
+      >
+        <img
+          src="/assets/drag-dots.svg"
+          alt="Drag"
+          style={{
+            width: '1rem',
+            height: '1rem',
+            pointerEvents: 'none', // important
+          }}
+        />
+      </div>
       <div style={{ flex: 1, minWidth: 0, fontFamily: 'Lato', fontWeight: '700', fontSize: 'clamp(13px, 2.2vw, 16px)', lineHeight: 1.2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flexWrap: 'wrap' }}>
         <span>{name}</span>
       </div>
