@@ -33,7 +33,8 @@ export function SortableLegendItem({
   endValue,
   onChangeDate
 }: SortableLegendItemProps) {
-    const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: item.id });
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
+    useSortable({ id: item.id });
 
     const headerStyle: React.CSSProperties = {
         transform: CSS.Transform.toString(transform) || '',
@@ -62,10 +63,10 @@ export function SortableLegendItem({
         description={item.description}
         dragHandleProps={{ ...attributes, ...listeners }} 
       />
-      {item.type === 'basic' && expanded && <Basic item={item} />}
-      {item.type === 'gradient' && expanded && <Gradient item={item} />}
-      {item.type === 'choropleth' && expanded && <Choropleth item={item} />}
-      {item.timeline && expanded && (
+      {item.type === 'basic' && expanded && !isDragging && <Basic item={item} />}
+      {item.type === 'gradient' && expanded && !isDragging && <Gradient item={item} />}
+      {item.type === 'choropleth' && expanded && !isDragging && <Choropleth item={item} />}
+      {item.timeline && expanded && !isDragging && (
         <Timeline
           start={normalizeToYear(new Date(item.timeline.minDate))}
           end={normalizeToYear(new Date(item.timeline.maxDate))}

@@ -23,7 +23,15 @@ type LegendWrapperProps = {
 };
 
 export function SortableWrapper({ items, onChangeOrder, onChangeCollapse, onChangeVisibility, onChangeInfo, onChangeDate, expanded, visibility, info, startValue, endValue }: LegendWrapperProps) {
-  const sensors = useSensors(useSensor(PointerSensor));
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        delay: 150,
+        tolerance: 5,
+      },
+    })
+    );
+  
   
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
