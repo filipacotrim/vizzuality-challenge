@@ -13,7 +13,19 @@ git clone git@github.com:filipacotrim/vizzuality-challenge.git
 cd legend-vizz
 ```
 
-3. Run the development server:
+3. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+4. Run the development server:
 
 ```bash
 npm run dev
@@ -25,7 +37,7 @@ pnpm dev
 bun dev
 ```
 
-4. Visit [deployed app](https://vizzuality-challenge.vercel.app/)!
+5. Visit [deployed app](https://vizzuality-challenge.vercel.app/)!
 
 ![Vizzuality Logo](legend-vizz/public/assets/rename.png)
 

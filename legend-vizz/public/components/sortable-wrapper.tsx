@@ -1,8 +1,8 @@
 'use client';
-import { useState } from 'react';
 import "@fontsource/lato"; 
 import { SortableLegendItem } from './sortable-item';
 import { LegendItem } from './utils';
+import { restrictToVerticalAxis, restrictToParentElement } from '@dnd-kit/modifiers';
 
 import { DndContext, closestCenter, DragEndEvent, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
@@ -40,7 +40,7 @@ export function SortableWrapper({ items, onChangeOrder, onChangeCollapse, onChan
 
 
   return (
-    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd} modifiers={[restrictToVerticalAxis, restrictToParentElement]}>
       <SortableContext items={items.map(i => i.id)} strategy={verticalListSortingStrategy}>
         <div style={{ border: '2px solid #ccc', borderRadius: '17px', width: "80%", maxWidth: '35rem', backgroundColor: '#ffffff', padding: '1rem' }}>
           {items.map((item, idx) => (

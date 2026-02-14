@@ -9,10 +9,9 @@ export function Gradient({ item }: { item: LegendItem }) {
             <div style={{ display: 'flex', width: '100%' }}>
                 {item.items?.map((subItem: { name: string; color: string }, idx: number) => (
                 <div key={idx} style={{ width: `${100 / item.items!.length}%`, display: 'flex', alignItems: 'center', justifyContent: idx === 0 ? 'flex-start' : 'flex-end' }}>
-                    <p style={{ marginTop: '0.25rem', fontSize: 'clamp(0.75rem, 2.2vw, 0.75rem)', fontFamily: 'Open Sans' }}>
+                    <p style={{ marginTop: '0.25rem', fontSize: 'clamp(0.75rem, 2.2vw, 0.75rem)', fontFamily: 'Open Sans', textTransform: "lowercase"}}>
                         {subItem.name}
                     </p>
-
                 </div>
                 ))}
             </div>

@@ -107,8 +107,8 @@ export function Timeline({ start, end, step, startValue, endValue, onChangeDate 
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'space-between',fontFamily: 'Open Sans', fontSize: 'clamp(0.75rem, 2.2vw, 0.75rem)',  marginTop: '0.5rem' }}>
-        <span>{startValue}</span>
-        <span>{endValue}</span>
+        <span>{start}</span>
+        <span>{end}</span>
       </div>
     </div>
   );
